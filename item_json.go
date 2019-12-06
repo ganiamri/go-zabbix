@@ -8,12 +8,14 @@ import (
 // jItem is a private map for the Zabbix API Host object.
 // See: https://www.zabbix.com/documentation/4.0/manual/api/reference/item/get
 type jItem struct {
-	HostID    string `json:"hostid,omitempty"`
-	ItemID    string `json:"itemid"`
-	ItemName  string `json:"name"`
-	ItemDescr string `json:"description,omitempty"`
-	LastClock string `json:"lastclock,omitempty"`
-	LastValue string `json:"lastvalue,omitempty"`
+	HostID        string `json:"hostid,omitempty"`
+	ItemID        string `json:"itemid"`
+	ItemName      string `json:"name"`
+	ItemKey       string `json:"key_"`
+	ItemDelay     string `json:"delay"`
+	ItemDescr     string `json:"description,omitempty"`
+	LastClock     string `json:"lastclock,omitempty"`
+	LastValue     string `json:"lastvalue,omitempty"`
 	LastValueType string `json:"value_type"`
 }
 
@@ -30,6 +32,8 @@ func (c *jItem) Item() (*Item, error) {
 		return nil, fmt.Errorf("Error parsing Item ID: %v", err)
 	}
 	item.ItemName = c.ItemName
+	item.ItemKey = c.ItemKey
+	item.ItemDelay = c.ItemDelay
 	item.ItemDescr = c.ItemDescr
 
 	item.LastClock, err = strconv.Atoi(c.LastClock)

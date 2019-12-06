@@ -17,6 +17,12 @@ type Item struct {
 	// Itemname is the technical name of the Item.
 	ItemName string
 
+	// Itemkey is the key of the Item.
+	ItemKey string
+
+	// Itemdelay is the delay period time of the Item.
+	ItemDelay string
+
 	// ItemDescr is the description of the Item.
 	ItemDescr string
 
@@ -30,7 +36,6 @@ type Item struct {
 	// 0 - float; 1 - text; 3 - int;
 	LastValueType int
 }
-
 
 type ItemGetParams struct {
 	GetParameters
@@ -99,7 +104,6 @@ type ItemGetParams struct {
 
 	// WithTriggers flag return only items that are used in triggers
 	WithTriggers bool `json:"with_triggers,omitempty"`
-
 }
 
 // GetItems queries the Zabbix API for Items matching the given search
