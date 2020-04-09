@@ -8,12 +8,14 @@ import (
 // jHost is a private map for the Zabbix API Host object.
 // See: https://www.zabbix.com/documentation/2.2/manual/api/reference/host/object
 type jHost struct {
-	HostID   string      `json:"hostid"`
-	Hostname string      `json:"host"`
-	Flags    int         `json:"flags,string,omitempty"`
-	Name     string      `json:"name,omitempty"`
-	Macros   []HostMacro `json:"macros,omitempty"`
-	Groups   []Hostgroup `json:"groups,omitempty"`
+	HostID       string         `json:"hostid"`
+	Hostname     string         `json:"host"`
+	Flags        int            `json:"flags,string,omitempty"`
+	Name         string         `json:"name,omitempty"`
+	Macros       []HostMacro    `json:"macros,omitempty"`
+	Groups       []Hostgroup    `json:"groups,omitempty"`
+	Items        []jItem        `json:"items,omitempty"`
+	Applications []jApplication `json:"applications,omitempty"`
 }
 
 // Host returns a native Go Host struct mapped from the given JSON Host data.
@@ -26,6 +28,8 @@ func (c *jHost) Host() (*Host, error) {
 	host.DisplayName = c.Name
 	host.Macros = c.Macros
 	host.Groups = c.Groups
+	host.Items = c.Items
+	host.Applications = c.Applications
 	/*
 		host.Source, err = strconv.Atoi(c.Flags)
 		if err != nil {

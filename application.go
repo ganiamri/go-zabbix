@@ -23,6 +23,9 @@ type Application struct {
 	// LastValueType is the type of LastValue
 	// 0 - float; 1 - text; 3 - int;
 	Templateids []string
+
+	// Items contains all item assigned to the host
+	Items []jItem
 }
 
 type ApplicationGetParams struct {
@@ -92,6 +95,8 @@ type ApplicationGetParams struct {
 
 	// WithTriggers flag return only Application that are used in triggers
 	WithTriggers bool `json:"with_triggers,omitempty"`
+
+	SelectItems SelectQuery `json:"selectItems,omitempty"`
 }
 
 // GetApplications queries the Zabbix API for Application matching the given search

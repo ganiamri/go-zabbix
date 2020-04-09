@@ -13,6 +13,7 @@ type jApplication struct {
 	ApplicationName     string   `json:"name"`
 	ApplicationFlag     string   `json:"flag"`
 	ApplicationTemplate []string `json:"templateids"`
+	ApplicationItems    []jItem  `json:"items,omitempty"`
 }
 
 // Application returns a native Go Application struct mapped from the given JSON Application data.
@@ -30,6 +31,7 @@ func (c *jApplication) Application() (*Application, error) {
 	application.Name = c.ApplicationName
 	application.Flags = c.ApplicationFlag
 	application.Templateids = c.ApplicationTemplate
+	application.Items = c.ApplicationItems
 
 	return application, err
 }
