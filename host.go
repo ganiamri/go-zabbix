@@ -34,6 +34,12 @@ type Host struct {
 
 	// Groups contains all Host Groups assigned to the Host.
 	Groups []Hostgroup
+
+	// Items contains all item assigned to the host
+	Items []jItem
+
+	// Applications contains all application assigned to the host
+	Applications []jApplication
 }
 
 // HostGetParams represent the parameters for a `host.get` API call.
